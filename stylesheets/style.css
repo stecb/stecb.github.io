@@ -6595,4 +6595,5 @@ section#main {
     transition: background-position 0.2s linear; }
     /* line 78, /Users/stefanoceschiberrini/Desktop/dev/stecbsource/source/stylesheets/style.css.scss */
     .cover-wrapper .img-src.img-blurry {
+      background-image: url("/images/dolomites.png");
       opacity: 0; }
