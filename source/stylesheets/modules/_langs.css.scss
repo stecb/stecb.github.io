@@ -1,0 +1,66 @@
+.langs {
+  position: relative;
+  margin-bottom: 20px;
+  background-color: $gray-darker;
+  width: 100%;
+  overflow: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.langs-items {
+  padding: 0;
+  margin: 0;
+  li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px;
+    span {
+      color: $gray-lighter;
+      display: block;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.lang-input-wrapper {
+  height: 120px;
+  overflow: hidden;
+  input {
+    display: none;
+  }
+}
+
+.lang-input-wrapper {
+  opacity: 0;
+  @include transition(transform 1.5s $trans, opacity .5s);
+}
+.langs-items li {
+  opacity: 0;
+  @include transition(transform .5s $trans, opacity .5s);
+  @for $i from 1 through 25 {
+    &:nth-child(#{$i}) {
+      @include transform(translate3d(-#{($i*10)+500}px, 0, 0));
+      @include transition-delay(#{$i*30}ms);
+      .lang-input-wrapper {
+        @include transform(rotate(-220deg) scale(.4));
+        @include transition-delay(#{$i*30}ms);
+      }
+    }
+  }
+}
+.langs-items.displayed li {
+  @include transform(translate3d(0, 0, 0) rotate(0) scale(1));
+  opacity: 1;
+  .lang-input-wrapper {
+    opacity: 1;
+    @include transform(rotate(0) scale(1));
+  }
+}
+
+body:not(.has-touch-support) {
+  .langs {
+    overflow-x: hidden;
+  }
+}

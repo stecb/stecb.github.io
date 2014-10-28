@@ -1,0 +1,44 @@
+---
+title: Stefano ceschi berrini's website. Software Engineer. Front-end enthusiast. JavasSript Hacker.
+---
+
+.main-links-wrapper#main-links-fixed= partial 'main_links'
+
+.switch-theme
+  %i.fa.fa-toggle-off
+  %i.fa.fa-toggle-on
+
+.cover-wrapper
+  .img-src
+  .img-src.img-blurry
+  .container-gradient-effect
+
+%header
+  .container
+    = partial 'social_links'
+    .img-wrapper.flipInX.animated
+      %img.img-circle.img-light{src: '/images/profile.jpg', width: 160, height: 160, data: {at2x: 'images/profile@2x.jpg'}}
+      %img.img-circle.img-dark{src: '/images/profile_dark.jpg', width: 160, height: 160, data: {at2x: 'images/profile_dark@2x.jpg'}}
+    %h1 
+      %span.animated.fadeInLeft Stefano Ceschi Berrini
+    %h2
+      = link_to 'Software engineer.', 'http://en.wikipedia.org/wiki/Software_engineer', class: 'link-header animated fadeInRight', target: '_blank'
+      %span.animated.fadeInUp Striving for Perfection and Awesomeness!
+    %p.text-center
+      = link_to '#who', class: 'btn btn-default btn-custom btn-lg animated fadeInUp' do
+        %i.fa.fa-chevron-down
+        &nbsp;
+        discover more about me
+
+%section#main{role: :main}
+
+  %button.btn.btn-default.btn-go-top
+    %i.fa.fa-angle-up
+
+  .container-fluid
+    .main-links-wrapper= partial 'main_links', locals: {big: true}
+    %section#who= partial 'who'
+    %section#jobs= partial 'jobs'
+    %section#tech= partial 'tech'
+    %section#life= partial 'life'
+    = partial 'footer'

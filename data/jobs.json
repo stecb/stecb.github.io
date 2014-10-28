@@ -1,0 +1,118 @@
+{
+  "Timerepublik" : {
+    "id": 1,
+    "started" : "Mar, 2012",
+    "type" : "job",
+    "logo" : "trk.png",
+    "ended" : "Now",
+    "location" : "Lugano (Switzerland), Padua (Italy)",
+    "subtitle": "Lead front-end engineer",
+    "description": "I'm currently in charge of the design and the user interface of the application. From the idea to the wireframes to the code. I developed it as 'mobile first', using a responsive approach and paying a lot of attention to performance, loading time and usability.",
+    "technologies": ["Ruby on rails", "JavaScript", "CoffeeScript", "react", "jQuery", "ES6", "HTML5", "CSS3", "Responsive"],
+    "website": "https://timerepublik.com",
+    "images": ["trk/thumb/1.jpg", "trk/thumb/2.jpg", "trk/thumb/3.jpg", "trk/thumb/4.jpg", "trk/thumb/5.png", "trk/thumb/6.png", "trk/thumb/7.png", "trk/thumb/8.png", "trk/thumb/9.png", "trk/thumb/10.png", "trk/thumb/11.png"]
+  },
+  "Fitmo" : {
+    "id": 2,
+    "started" : "Feb, 2011",
+    "ended": "Mar, 2012",
+    "location" : "Amsterdam (Netherlands)",
+    "type" : "job",
+    "logo" : "fitmo.png",
+    "description": "I was in charge of all the front-end of the application, I made all the decisions regarding the technologies to use and I also contributed to design process. I also interviewed candidates for front-end positions.",
+    "subtitle": "Lead front-end engineer",
+    "technologies": ["Ruby on rails", "JavaScript", "CoffeeScript", "HTML5", "SASS", "CSS3", "Compass", "Mustache", "MooTools"],
+    "website": "https://fitmo.com",
+    "images": ["fitmo/thumb/1.png", "fitmo/thumb/2.png", "fitmo/thumb/3.png", "fitmo/thumb/4.png"]
+  },
+  "Zucchetti SPA (R&D branch)" : {
+    "id": 3,
+    "started" : "Jan, 2008",
+    "ended": "Feb, 2011",
+    "location": "Padua (Italy)",
+    "type" : "job",
+    "logo" : "zucchetti.png",
+    "website": "http://zucchetti.it",
+    "description": "Built a cross-browser CMS; Worked on developing Web-RAD tools to simplify web portals development; Worked on a canvas (HTML5) based tool to improve companies BPM workflows. Interviewed new employees and collaborated with the university of Padua as we shared some projects for the software engineering course.",
+    "subtitle": "Web developer/Researcher",
+    "technologies": ["Java", "jsp", "taglib", "JavaScript", "CSS", "HTML", "MooTools", "Canvas", "C++", "Servlet"],
+    "images": ["zucchetti/thumb/1.png", "zucchetti/thumb/2.png", "zucchetti/thumb/3.png", "zucchetti/thumb/4.png", "zucchetti/thumb/5.png", "zucchetti/thumb/6.png", "zucchetti/thumb/7.png", "zucchetti/thumb/8.png"]
+  },
+  "Self employed" : {
+    "id": 4,
+    "started" : "Jan, 2004",
+    "ended": "Feb, 2011",
+    "type" : "job",
+    "logo" : "myself.png",
+    "description": "During those years I Built my own MVC framework with PHP thought to easily generate/customize websites for clients; Using this hand-made tool I was able to generate dynamic CMS for clients in matter of days.",
+    "subtitle": "Web developer/SEO specialist",
+    "technologies": ["PHP", "ZEND", "MySql", "HTML", "JavaScript", "MooTools"],
+    "images": ["self/thumb/1.png", "self/thumb/2.png", "self/thumb/3.png", "self/thumb/4.png", "self/thumb/5.png", "self/thumb/6.png", "self/thumb/7.png", "self/thumb/8.png", "self/thumb/9.png", "self/thumb/10.png", "self/thumb/11.png", "self/thumb/12.png", "self/thumb/13.png", "self/thumb/14.png", "self/thumb/15.png", "self/thumb/16.png", "self/thumb/17.png"],
+    "websites" : "<a href='http://www.tecnoplex.it/en' target='_blank' class='btn btn-dark btn-xs'>tecnoplex.it</a> <a href='http://studio-teorema.com' target='_blank' class='btn btn-dark btn-xs'>studio-teorema.com</a> <a href='http://altezzonhotel.com' target='_blank' class='btn btn-dark btn-xs'>altezzonhotel.com</a> <a href='http://restaura-srl.com' target='_blank' class='btn btn-dark btn-xs'>restaura-srl.com</a> <a href='http://studiorigato.net' target='_blank' class='btn btn-dark btn-xs'>studiorigato.net</a> <a href='http://bdm-architetti.it/it' target='_blank' class='btn btn-dark btn-xs'>bdm-architetti.it</a>"
+  },
+  "Bocconi University" : {
+    "id": 5,
+    "started" : "Jan, 2009",
+    "ended": "Dec, 2009",
+    "type" : "job",
+    "logo" : "bocconi.png",
+    "website": "http://www.unibocconi.eu/wps/wcm/connect/Bocconi/SitoPubblico_EN/Navigation+Tree/Home/",
+    "description": "Worked for the Bocconi School of echonomics in Milan on a LAMP-based university internal tool that helped professors to collect/create/edit/view abstracts and papers.",
+    "subtitle": "Web developer/Consultant",
+    "technologies": ["PHP", "ZEND", "MySql", "HTML", "JavaScript", "MooTools"]
+  },
+  "University of Padua" : {
+    "id": 6,
+    "started" : "Jan, 2007",
+    "ended": "May, 2008",
+    "type" : "job",
+    "logo" : "unipd.png",
+    "website": "http://www.math.unipd.it/en/",
+    "description": "Worked on a LAMP-based web portal thought to help students of computer science faculty to manage their internship and graduation processes. Paying great attention to W3C standards, browser differences and accessibility",
+    "subtitle": "Web developer/Consultant",
+    "technologies": ["PHP", "ZEND", "MySql", "HTML", "JavaScript"],
+    "images": ["siagas/thumb/1.png", "siagas/thumb/2.png", "siagas/thumb/3.png", "siagas/thumb/4.png"]
+  },
+  "Unipd graduation" : {
+    "id": 8,
+    "started" : "Sep, 2004",
+    "ended": "Jul, 2007",
+    "type" : "school",
+    "logo" : "unipd.png",
+    "website": "http://www.math.unipd.it/en/",
+    "description": "Software Engineering, Algorithms, Artificial Intelligence, Web Development, OOP, Distributed programming, Computer Architecture, Computer Security",
+    "subtitle": "University. Computer Science major.",
+    "technologies": ["C", "C++", "Java", "Oracle", "HTML", "CSS", "Python"]
+  },
+  "Visiant Srl" : {
+    "id": 9,
+    "started" : "Apr, 2007",
+    "ended": "Jun, 2007",
+    "type" : "job",
+    "logo" : "visiant.png",
+    "website": "http://visiant.it",
+    "description": "University internship. Worked on a webservice interface for a struts-based web application.",
+    "subtitle": "Java/Struts programmer",
+    "technologies": ["Java", "Struts", "PostgreSQL", "HTML", "JavaScript"]
+  },
+  "Enaip Veneto High School" : {
+    "id": 10,
+    "started" : "May, 2006",
+    "ended": "Jun, 2006",
+    "type" : "job",
+    "logo" : "enaip.png",
+    "website": "http://www.enaip.veneto.it/",
+    "description": "Course made for unemployed people. Taught computer science basics (computer hardware basics, binary system, computer architecture, Windows xp OS, Linux OS, Internet architecture",
+    "subtitle": "Computer science [basics] teacher"
+  },
+  "P.F. Calvi High School" : {
+    "id": 11,
+    "started" : "Sep, 1998",
+    "ended": "Jun, 2003",
+    "type" : "school",
+    "logo" : "calvi.png",
+    "description": "High school diploma in accountancy and computer science",
+    "subtitle": "High school diploma",
+    "website": "http://www.calvipd.gov.it/"
+  }
+}

@@ -1,0 +1,47 @@
+@mixin triangle($direction, $color, $size){
+    @if $direction == "left" {
+            border-bottom: $size solid transparent;
+            border-right: $size solid $color;
+            border-top: $size solid transparent;
+    }
+    @else if $direction == "right" {
+            border-bottom: $size solid transparent;
+            border-left: $size solid $color;
+            border-top: $size solid transparent;
+    }
+    @else if $direction == "up" {
+            border-bottom: $size solid $color;
+            border-left: $size solid transparent;
+            border-right: $size solid transparent;
+    }
+    @else if $direction == "down" {
+            border-right: $size solid transparent;
+            border-left: $size solid transparent;
+            border-top: $size solid $color;
+    }
+
+    height: 0;
+    width: 0;
+}
+
+
+@mixin arrow($placement, $color, $width: 10px) {
+  content: ' ';
+  position: absolute;
+  @if $placement == "topleft" {
+    top: -10px; left: 10px;
+    @include triangle("up", $color, $width);
+  }
+  @else if $placement == "lefttop" {
+    top: 10px; left: -10px;
+    @include triangle("left", $color, $width); 
+  }
+  @else if $placement == "righttop" {
+    top: 10px; right: -10px;
+    @include triangle("right", $color, $width); 
+  }
+  @else if $placement == "bottomleft" {
+    top: auto; left: 10px; bottom: -10px;
+    @include triangle("down", $color, $width); 
+  }
+}

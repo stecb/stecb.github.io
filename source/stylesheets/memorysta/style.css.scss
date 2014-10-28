@@ -1,0 +1,27 @@
+@import "normalize";
+@import "compass";
+
+$main-color: rgba(0,0,0,.8);
+
+body {
+  font-family: 'Roboto Condensed', Georgia, sans-serif;
+  background-color: #fff;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $main-color;
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: 0.01rem;
+}
+
+.msta-card {
+  float: left;
+  width: 20%;
+  img {
+    max-width: 100%;
+  }
+}

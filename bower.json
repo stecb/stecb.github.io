@@ -1,0 +1,24 @@
+{
+  "name": "stecbsource",
+  "version": "0.0.1",
+  "homepage": "http://stecb.ninja",
+  "authors": [
+    "stecb <stefano.ceschib@gmail.com>"
+  ],
+  "description": "stefano ceschi berrini's website",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "jquery-knob": "~1.2.11",
+    "perfect-scrollbar": "~0.5.5",
+    "normalize.css": "~3.0.2"
+  }
+}
