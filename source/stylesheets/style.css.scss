@@ -431,11 +431,11 @@ body.is-dark {
       @include transition(transform .5s $trans, opacity .5s);
       @for $i from 1 through 10 {
         &:nth-child(#{$i}) {
-          @include transform(translate3d(0, -#{($i*2)}px, 0) rotate(-#{random(100)}deg) scale(.7));
-          @include transition-delay(#{random(200)}ms);
+          @include transform(translate3d(0, -10px, 0) rotate(-25deg) scale(.7));
+          @include transition-delay(#{($i*30)}ms);
         }
         &:nth-child(odd) {
-          @include transform(translate3d(0, -#{($i*2)}px, 0) rotate(#{random(100)}deg));
+          @include transform(translate3d(0, -40px, 0) rotate(25deg));
         }
       }
     }
@@ -444,11 +444,11 @@ body.is-dark {
     li {
       @for $i from 1 through 10 {
         &:nth-child(#{$i}) {
-          @include transform(translate3d(0, #{($i*2)}px, 0) rotate(-#{random(100)}deg) scale(.7));
-          @include transition-delay(#{random(200)}ms);
+          @include transform(translate3d(0, 10px, 0) rotate(-25deg) scale(.7));
+          @include transition-delay(#{($i*30)}ms);
         }
         &:nth-child(odd) {
-          @include transform(translate3d(0, #{($i*2)}px, 0) rotate(#{random(100)}deg));
+          @include transform(translate3d(0, 40px, 0) rotate(25deg));
         }
       }
     }

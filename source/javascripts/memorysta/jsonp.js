@@ -1,3 +1,5 @@
+// simple jsonp function, pass an url and callback.
+// callback will be called w/ response as parameter
 !(function(w){
   'use strict';
   w.jsonp = function(url, callback) {
