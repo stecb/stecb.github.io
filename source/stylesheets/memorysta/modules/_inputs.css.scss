@@ -19,10 +19,10 @@
     background-color: transparent;
     border: none;
   }
-  input[type=radio] {
+  .checkbox-inline input {
     margin-right: 4px;
   }
-  input[type=text] {
+  #hashtag {
     border: none;
     border-bottom: 1px solid $gray-lighter;
     @include box-shadow(none);
