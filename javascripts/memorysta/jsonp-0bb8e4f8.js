@@ -1,1 +1,0 @@
-!function(c){"use strict";c.jsonp=function(n,t){c.callbackJSONP=function(c){t(c)};var a=document.createElement("script");a.src=n+"&callback=callbackJSONP",document.body.appendChild(a)}}(window);
