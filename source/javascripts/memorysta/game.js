@@ -45,7 +45,7 @@
       resetShow: null
     };
     this.options = {
-      count: level === 'easy' ? 1 : level === 'medium' ? 10 : 15,
+      count: level === 'easy' ? 6 : level === 'medium' ? 10 : 15,
       client_id: CLIENT_ID
     };
     this.board.style.display = 'block';
@@ -139,7 +139,7 @@
       images.push(tpl);
       images.push(tpl); // push the copy
     }
-    this.gameDOM.innerHTML = images.join('');
+    this.gameDOM.innerHTML = images.shuffle().join('');
     [].slice.call(document.querySelectorAll('#board img')).forEach(function(img){
       img.addEventListener('load', function(){
         loadingCount++;

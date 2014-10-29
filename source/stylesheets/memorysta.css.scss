@@ -1,7 +1,7 @@
 $trans: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 $main-color: rgba(0,0,0,.8);
 
-@import "normalize";
+@import "memorysta/normalize";
 @import "compass";
 @import 'animate';
 @import 'animate/shake';
@@ -18,9 +18,9 @@ $main-color: rgba(0,0,0,.8);
 @import 'bootstrap/forms';
 @import 'bootstrap/input-groups';
 
-@import "modules/cards";
-@import "modules/inputs";
-@import "modules/board";
+@import "memorysta/modules/cards";
+@import "memorysta/modules/inputs";
+@import "memorysta/modules/board";
 
 body {
   -webkit-backface-visibility: visible;
