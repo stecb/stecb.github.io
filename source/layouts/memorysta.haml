@@ -13,17 +13,18 @@
     %meta{ name: "msapplication-TileImage", content: 'images/favicon.png' }
     -# = partial 'social_meta_memorysta'
     :plain
-        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-        <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+      <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+      <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
     %link{href: '/stylesheets/memorysta/style.css', type: 'text/css', rel: 'stylesheet' }
     :javascript
-        !function(w) {
-          w.MSTA = MSTA = w.MSTA || {};
-          MSTA.env = '#{environment}';
-        }(this);
+      !function(w) {
+        w.SCB = SCB = w.SCB || {};
+        w.MSTA = MSTA = w.MSTA || {};
+        MSTA.env = '#{environment}';
+      }(this);
   %body
     = yield
     - unless development?

@@ -1,84 +1,84 @@
+/**
+ * Copyright (C) 2014 by Stefano Ceschi Berrini, @stecb
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 //= require_tree .
+//= require ../utils
 
 !(function() {
   'use strict';
 
-  function shuffle(o){
-      for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-      return o;
-  };
-
-  var
-    CARD_PREFIX = 'msta-card',
-    ENDPOINT = "https://api.instagram.com/v1/tags/{{tag}}/media/recent",
-    CLIENT_ID = 'f3a1200e40454386afcf89918e8e63c0',
-    CARD_TPL = '<div data-refid="{{refid}}" class="'+ CARD_PREFIX +'"><img src="{{src}}" alt="{{alt}}" /></div>';
-
-  var Game = function(domNode, count, tag) {
-    this.points = 0;
-    this.board = domNode;
-    this.tag = tag;
-    this.options = {
-      count: ~~(count/2),
-      client_id: CLIENT_ID
-    };
-  }
-
-  Game.prototype.check = function() {
-    // body...
-  }
-
-  Game.prototype.initEvents = function() {
-    this.board.addEventListener('click', function(event){
-      var parent = null;
-      if (event.target.nodeName === 'IMG') {
-        parent = event.target.parentElement;
-        // check whether another card has already been selected
-        // otherwise just add the selected class
-        parent.classList.add('selected');
+  var hashtag = document.querySelector('#hashtag'),
+      playBtn = document.querySelector('#play'),
+      playAgain = document.querySelector('#playagain'),
+      whash = window.location.hash.sanitize(),
+      boardWrapper = document.getElementById('board-wrapper'),
+      gameOptions = document.querySelector('.game-options'),
+      currentGame = null,
+      options = {},
+      setOptions = function() {
+        options.level = document.querySelector('input[type=radio]:checked').value;
+        options.hash = hashtag.value.sanitize();
+      },
+      newGame = function() {
+        gameOptions.classList.add('out');
+        playBtn.disabled = true;
+        setTimeout(function() {
+          gameOptions.style.display = 'none';
+          currentGame = new MSTA.Game(document.getElementById('board'), options.level, options.hash).play();
+        }, 1000);
       }
-    });
-  }
+  ;
 
-  Game.prototype.initCards = function(response) {
-    var data = response.data,
-        url = '',
-        tpl = '',
-        images = [],
-        shuffledImages = [],
-        loadingCount = 0,
-        _this = this;
-    for (var i = 0, l = data.length; i < l; i++) {
-      url = data[i].images.standard_resolution.url
-      tpl = CARD_TPL.replace('{{src}}', url).replace('{{alt}}', CARD_PREFIX + (i+1)).replace('{{refid}}', data[i].id);
-      images.push(tpl);
-      images.push(tpl); // push the copy
+  playBtn.addEventListener('click', function() {
+    setOptions();
+    if(options.hash !== '') {
+      newGame();
+    } else {
+      hashtag.focus();
     }
-    shuffledImages = shuffle(images);
-    this.board.innerHTML = shuffledImages.join('');
-    [].slice.call(document.querySelectorAll('#board img')).forEach(function(img){
-      img.addEventListener('load', function(){
-        loadingCount++;
-        if(loadingCount === _this.options.count * 2) {
-          _this.initEvents();
-        }
-      })
+  });
+
+  playAgain.addEventListener('click', function() {
+    gameOptions.style.display = 'block';
+    setTimeout(function(){
+      gameOptions.classList.remove('out');
+    }, 50);
+    currentGame.end(function(){
+      playBtn.disabled = false;
     });
+  });
+
+  hashtag.addEventListener('keyup', (function(){
+    var oldValue = '';
+    return function() {
+      oldValue !== this.value && (this.value = '#'+this.value.sanitize()) && (oldValue = this.value);
+    }
+  })());
+
+  // new Game if whash
+  if(whash !== ''){
+    hashtag.value = '#'+whash;
+    setOptions();
+    newGame();
   }
-
-  Game.prototype.play = function() {
-    var url = ENDPOINT.replace('{{tag}}', this.tag) + '?count=' + this.options.count + '&client_id=' + this.options.client_id;
-    jsonp(url, function(response) {
-      this.initCards(response);
-    }.bind(this));
-  }
-
-  window.Game = Game;
-
-  // new Game
-  var g = new Game(document.getElementById('board'), 20, 'animals');
-
-  // play game
-  g.play();
 
 })();

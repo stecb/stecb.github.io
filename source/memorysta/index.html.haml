@@ -1,6 +1,36 @@
-%h1 Memorysta
+%h1 MemorYsta
 
-#board
+%p.small play memory with instagram pictures! by <a href="/" class="btn btn-xs btn-primary">@stecb</a>
 
-%footer
-  &copy; <a href="/">Stefano Ceschi Berrini</a>
+.game-options
+  .form-group
+    %input#hashtag.form-control.input-lg{type: :text, placeholder: 'type whatever hashtag'}
+  .form-group
+    %label.checkbox-inline
+      %input#easy{type: :radio, value: :easy, name: :level, checked: :checked} easy
+    %label.checkbox-inline
+      %input#medium{type: :radio, value: :medium, name: :level} medium
+    %label.checkbox-inline
+      %input#difficult{type: :radio, value: :difficult, name: :level} difficult
+  .form-group
+    %button#play.btn.btn-success{type: :button} PLAY
+
+-# audio stuff
+-# %audio{src: "audio.mp3"}
+
+#board-wrapper
+  .loading
+    .wrap
+      %span 
+        ="...Downloading images..."
+        %br
+        %i.fa.fa-circle-o-notch.fa-spin
+  .you-won
+    .wrap
+      %span
+        YOU WON!
+        %i.fa.fa-smile-o
+        %button.btn.btn-sm.btn-success#playagain
+          %i.fa.fa-refresh
+          play again
+  #board
