@@ -3,9 +3,11 @@ $main-color: rgba(0,0,0,.8);
 
 @import "memorysta/normalize";
 @import "compass";
+@import "sweetalert";
 @import 'animate';
 @import 'animate/shake';
 @import 'animate/pulse';
+@import 'animate/fadeInUp';
 @import 'animate/fadeOutUp';
 @import 'fontawesome/font-awesome';
 @import 'mixins/vendor_prefixes';
@@ -21,6 +23,7 @@ $main-color: rgba(0,0,0,.8);
 @import "memorysta/modules/cards";
 @import "memorysta/modules/inputs";
 @import "memorysta/modules/board";
+@import "memorysta/modules/controls";
 
 body {
   -webkit-backface-visibility: visible;
@@ -48,6 +51,44 @@ a {
   box-sizing: border-box;
 }
 
-.small {
-  font-size: 14px;
+.btn-circular {
+  border-radius: 50%;
+}
+
+header {
+  padding-bottom: 20px;
+  h1 {
+    font-size: 24px;
+    padding: 0;
+    margin: 10px 0;
+    @include transition(margin 1.5s $trans);
+    small {
+      font-size: 12px;
+      color: $gray-light;
+    }
+  }
+  p {
+    font-size: 14px;
+    margin-top: 0;
+    overflow: hidden;
+    @include transition(height 1.5s $trans);
+  }
+  .fb-like {
+    position: relative;
+    top: -7px;
+  }
+  a {
+    color: $gray-dark;
+  }
+}
+
+body.playing {
+  header {
+    h1 {
+      margin-bottom: 0;
+    }
+    p {
+      height: 0;      
+    }
+  }
 }

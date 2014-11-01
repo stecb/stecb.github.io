@@ -24,45 +24,63 @@
   'use strict';
 
   var
+    TWITTER_SHARE_TEXT = "{{href}} I played #MemorYsta and scored {{points}} points in {{time}}!! Can you beat me?",
     DONE_TO = 1000, // ms
     RESET_TO = 1000, // ms
     CARD_PREFIX = 'msta-card',
     ENDPOINT = "https://api.instagram.com/v1/tags/{{tag}}/media/recent",
     CLIENT_ID = 'f3a1200e40454386afcf89918e8e63c0',
-    CARD_TPL = '<div data-refid="{{refid}}" class="'+ CARD_PREFIX +' flip-container"><div class="flipper"><div class="front"></div><div class="back"><img src="{{src}}" alt="{{alt}}" /></div></div></div>';
+    CARD_TPL = '<div data-refid="{{refid}}" class="'+ CARD_PREFIX +' flip-container"><div class="flipper"><div class="front"></div><div class="back"><img src="{{src}}" alt="{{alt}}" /></div></div></div>'
+  ;
 
-  var Game = function(domNode, level, tag) {
+  var Game = function(domNode, options) {
     this.gid = Math.floor(Math.random() * (100000000000 - 1 + 1)) + 1;
     this.gameDOM = document.createElement('div');
     this.gameDOM.id = 'game' + this.gid;
+    this.gameOptionsDOM = options.gameOptionsDOM;
     domNode.innerHTML = '';
     domNode.appendChild(this.gameDOM);
     this.board = domNode.parentElement;
     this.points = 0;
-    this.tag = tag;
+    this.tag = options.hash;
     this.timeouts = {
       resetDone: null,
-      resetShow: null
+      resetShow: null,
+      timer: null
     };
     this.options = {
-      count: level === 'easy' ? 6 : level === 'medium' ? 10 : 15,
+      count: options.level === 'easy' ? 6 : options.level === 'medium' ? 10 : 15,
       client_id: CLIENT_ID
     };
+    this.DOM = {
+      time: options.timeDOM,
+      points: options.pointsDOM
+    }
+    document.getElementById('tag-placeholder').innerHTML = '<small>#' + this.tag + '</small>';
     this.board.style.display = 'block';
-    this.board.classList.remove('done');
-    this.board.classList.remove('end');
+    document.body.classList.remove('won');
+    document.body.classList.remove('end');
+    
     setTimeout(function(){
-      this.board.classList.add('playing');
+      document.body.classList.add('playing');
     }.bind(this), 50);
+  }
+
+  Game.prototype.won = function() {
+    var txt = TWITTER_SHARE_TEXT
+      .replace('{{href}}', 'http://stecb.ninja/memorysta' + window.location.hash)
+      .replace('{{points}}', this.points)
+      .replace('{{time}}', this.DOM.time.innerHTML)
+    document.getElementById('tw-share-placeholder').innerHTML = '<a href="https://twitter.com/share" class="twitter-share-button" data-text="'+txt+'" data-via="stecb" data-count="none">Tweet</a>';
+    twttr.widgets.load();
+    clearInterval(this.timeouts.timer);
     this.reset();
+    document.body.classList.add('won');
   }
 
   Game.prototype.checkStatus = function() {  
     var done = document.querySelectorAll('.' + CARD_PREFIX + '.done');
-    if(done.length === this.options.count * 2) {
-      this.reset();
-      this.gameDOM.parentElement.parentElement.classList.add('done');
-    }
+    (done.length === this.options.count * 2) && this.won();
   }
 
   Game.prototype.check = function(card) {
@@ -70,11 +88,13 @@
     var selected = document.querySelectorAll('.' + CARD_PREFIX + '.selected');
     if(selected.length === 0) {
       card.classList.add('selected');
+      card.dataset.visited = true;
     } else if (selected[0] != card){
       // show card 
       card.classList.add('selected');
       // check if data-id is ==
       if (selected[0].dataset.refid === card.dataset.refid) {
+        this.setPoints('equal');
         this.resetting = true;
         card.classList.add('memorized', 'animated', 'pulse');
         card.classList.remove('selected');
@@ -88,11 +108,13 @@
           this.resetting = false;
         }.bind(this), DONE_TO);
       } else {
+        card.dataset.visited && this.setPoints('not_equal');
         this.resetting = true;
         card.classList.remove('selected');
         card.classList.add('showed', 'animated', 'shake');
         selected[0].classList.remove('selected');
         selected[0].classList.add('showed', 'animated', 'shake');
+        card.dataset.visited = true;
         clearTimeout(this.timeouts.resetShow);
         this.timeouts.resetShow = setTimeout(function(){
           selected[0].classList.remove('showed', 'animated', 'shake');
@@ -103,9 +125,51 @@
     }
   }
 
+  Game.prototype.setPoints = function(what) {
+    var points = 0,
+        pointElement = document.createElement('div');
+    switch(what) {
+      case "equal" : 
+        points = 5;
+      break;
+      case "not_equal" :
+        points = -2;
+      break;
+    }
+    pointElement.classList.add('point-element', 'animated', 'fadeInUp');
+    points > 0 && pointElement.classList.add('plus');
+    pointElement.innerHTML = points;
+    document.body.appendChild(pointElement);
+    setTimeout(function() {
+      pointElement.classList.remove('animated', 'fadeInUp');
+      setTimeout(function(){
+        pointElement.classList.add('animated', 'fadeOutUp');
+        setTimeout(function(){
+          pointElement.parentElement.removeChild(pointElement);
+        }, 1000);
+      }, 500)
+    }, 1000)
+    this.points = (this.points + points);
+    this.DOM.points.innerHTML = this.points;
+  }
+
+  Game.prototype.startTimer = function() {
+    var elapsed = 1,
+        mins = 0,
+        sec = 0;
+    this.timeouts.timer = setInterval(function(){
+      mins = ~~(elapsed / 60);
+      sec = elapsed % 60;
+      this.DOM.time.innerHTML = (mins < 10 ? '0' + mins : mins) + ":" + (sec < 10 ? '0' + sec : sec);
+      elapsed ++;
+    }.bind(this), 1000);
+  }
+
   Game.prototype.ready = function(){
-    this.gameDOM.parentElement.parentElement.classList.add('ready');
+    document.body.classList.remove('loading');
+    document.body.classList.add('ready');
     this.initEvents();
+    this.startTimer();
   }
 
   Game.prototype.initEvents = function() {
@@ -120,16 +184,16 @@
   }
 
   Game.prototype.initCards = function(response) {
-    var data = response.data,
+    var data = response.data ? response.data.slice(0, this.options.count) : undefined,
         url = '',
         tpl = '',
         images = [],
         loadingCount = 0,
         _this = this;
 
-    if(typeof data === 'undefined' || data.length === 0) {
-      alert('Change hash');
-      this.board.style.display = 'none';
+    if(typeof data === 'undefined' || data.length === 0 || data.length < this.options.count) {
+      swal({title: 'please change hash!'});
+      this.playAgain();
       return;
     }
 
@@ -150,12 +214,16 @@
 
   Game.prototype.reset = function() {
     this.resetting = false;
-    this.gameDOM.parentElement.parentElement.classList.remove('ready');
+    document.body.classList.remove('ready', 'loading');
   }
 
   Game.prototype.end = function(callback) {
-    this.board.classList.remove('playing');
-    this.board.classList.add('end');
+    clearInterval(this.timeouts.timer);
+    this.DOM.time.innerHTML = '00:00';
+    this.DOM.points.innerHTML = '0';
+    document.getElementById('tag-placeholder').innerHTML = '';
+    document.body.classList.remove('playing', 'loading');
+    document.body.classList.add('end');
     setTimeout(function(){
       this.board.style.display = 'none';
       callback.call();
@@ -168,6 +236,18 @@
       this.initCards(response);
     }.bind(this));
     return this;
+  }
+
+  Game.prototype.playAgain = function() {
+    document.body.classList.remove('won');
+    this.gameOptionsDOM.style.display = 'block';
+    setTimeout(function(){
+      this.gameOptionsDOM.classList.remove('out');
+    }.bind(this), 50);
+    this.end(function(){
+      document.querySelector('#hashtag').focus();
+      document.querySelector('#play').disabled = false;
+    });
   }
 
   // export (window)

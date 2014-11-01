@@ -20,6 +20,7 @@
  * THE SOFTWARE.
  */
 
+//= require sweetalert
 //= require_tree .
 //= require ../utils
 
@@ -28,22 +29,32 @@
 
   var hashtag = document.querySelector('#hashtag'),
       playBtn = document.querySelector('#play'),
+      restartBtn = document.querySelector('#restart'),
       playAgain = document.querySelector('#playagain'),
-      whash = window.location.hash.sanitize(),
+      time = document.querySelector('#time'),
+      points = document.querySelector('#points'),
+      whash = window.location.hash,
       boardWrapper = document.getElementById('board-wrapper'),
       gameOptions = document.querySelector('.game-options'),
       currentGame = null,
+      h = '',
+      d = '',
       options = {},
       setOptions = function() {
         options.level = document.querySelector('input[type=radio]:checked').value;
         options.hash = hashtag.value.sanitize();
+        options.gameOptionsDOM = gameOptions;
+        options.timeDOM = time;
+        options.pointsDOM = points;
       },
       newGame = function() {
+        window.location.hash = options.hash + "|" + options.level;
+        document.body.classList.add('loading');
         gameOptions.classList.add('out');
         playBtn.disabled = true;
         setTimeout(function() {
           gameOptions.style.display = 'none';
-          currentGame = new MSTA.Game(document.getElementById('board'), options.level, options.hash).play();
+          currentGame = new MSTA.Game(document.getElementById('board'), options).play();
         }, 1000);
       }
   ;
@@ -53,32 +64,51 @@
     if(options.hash !== '') {
       newGame();
     } else {
+      hashtag.classList.add('animated', 'shake');
       hashtag.focus();
+      setTimeout(function(){
+        hashtag.classList.remove('animated', 'shake');
+      }, 500);
     }
   });
 
   playAgain.addEventListener('click', function() {
-    gameOptions.style.display = 'block';
-    setTimeout(function(){
-      gameOptions.classList.remove('out');
-    }, 50);
-    currentGame.end(function(){
-      playBtn.disabled = false;
+    currentGame.playAgain();
+  });
+
+  restartBtn.addEventListener('click', function() {
+    swal({   
+      title: "Are you sure?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes, restart it!",
+      closeOnConfirm: true 
+      }, function(){
+      currentGame && currentGame.playAgain();
     });
+    
   });
 
   hashtag.addEventListener('keyup', (function(){
     var oldValue = '';
-    return function() {
+    return function(evt) {
       oldValue !== this.value && (this.value = '#'+this.value.sanitize()) && (oldValue = this.value);
+      (evt.keyCode === 13) && playBtn.click();
     }
   })());
 
   // new Game if whash
   if(whash !== ''){
-    hashtag.value = '#'+whash;
+    h = whash.split('|')[0].sanitize();
+    whash.split('|')[1] && (d = whash.split('|')[1].sanitize());
+    hashtag.value = '#'+h;
+    d && (document.getElementById(d).checked = true);
     setOptions();
-    newGame();
+    playBtn.focus();
+    // newGame();
+  } else {
+    hashtag.focus();
   }
 
 })();

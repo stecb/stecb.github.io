@@ -1,6 +1,41 @@
-%h1 MemorYsta
+:javascript
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '800236873352748',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
 
-%p.small play memory with instagram pictures! by <a href="/" class="btn btn-xs btn-primary">@stecb</a>
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+%header
+  %h1 
+    MemorYsta
+    %span#tag-placeholder
+  %p.small play memory with instagram pictures! by <a href="/">@stecb</a>
+  .fb-like{data: {href: 'http://stecb.ninja/memorysta', layout: :button, :'show-faces' => true, action: :like, share: :true}}
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="http://stecb.ninja/memorysta Play #MemorYsta! The #memory game with #instagram photos!!" data-via="stecb">Tweet</a>
+
+
+.game-controls
+  .time
+    %i.fa.fa-clock-o
+    %span#time 00:00
+  .points
+    %i.fa.fa-dot-circle-o
+    %span#points 0
+    %span.label points
+  %button#restart.btn.btn-danger.btn-sm.btn-circular{type: :button}
+    %i.fa.fa-refresh
 
 .game-options
   .form-group
@@ -18,19 +53,21 @@
 -# audio stuff
 -# %audio{src: "audio.mp3"}
 
+.status-panel.status-loading
+  .wrap
+    %span 
+      ="...loading..."
+      %br
+      %i.fa.fa-circle-o-notch.fa-spin
+.status-panel.status-won
+  .wrap
+    %span
+      YOU WON!
+      %i.fa.fa-smile-o
+      %button.btn.btn-sm.btn-success#playagain
+        %i.fa.fa-refresh
+        play again
+      #tw-share-placeholder
+
 #board-wrapper
-  .loading
-    .wrap
-      %span 
-        ="...Downloading images..."
-        %br
-        %i.fa.fa-circle-o-notch.fa-spin
-  .you-won
-    .wrap
-      %span
-        YOU WON!
-        %i.fa.fa-smile-o
-        %button.btn.btn-sm.btn-success#playagain
-          %i.fa.fa-refresh
-          play again
   #board

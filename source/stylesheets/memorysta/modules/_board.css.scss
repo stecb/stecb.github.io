@@ -1,9 +1,10 @@
-.loading,
-.you-won {
-  position: absolute;
+.status-panel {
+  display: none;
+  position: fixed;
   z-index: 11;
   width: 100%;
   height: 100%;
+  top: 0; left: 0;
   background-color: rgba(#fff, .9);
   .wrap {
     display: table;
@@ -20,7 +21,7 @@
   }
 }
 
-.you-won {
+.status-won {
   display: none;
   span {
     font-size: 2em;
@@ -34,31 +35,6 @@
   position: relative;
   @include transition(transform 1s $trans, opacity 1s);
   @include transform(translate3d(0, 350px, 0));
-  &.playing {
-    opacity: 1;
-    @include transform(translate3d(0, 0, 0));
-  }
-  &.ready {
-    .loading {
-      display: none;
-    }
-    #board {
-      opacity: 1;
-    }
-  }
-  &.done {
-    .loading {
-      display: none;
-    }
-    .you-won {
-      display: block;
-    }
-  }
-  &.end {
-    .you-won .btn {
-      display: none;
-    }
-  }
 }
 
 #board {
@@ -67,5 +43,39 @@
   &:after {
     content: '';
     clear: both;
+  }
+}
+
+body.loading {
+  .status-loading {
+    display: block;
+  }
+}
+
+body.playing {
+  #board-wrapper {
+    opacity: 1;
+    @include transform(translate3d(0, 0, 0));
+  }
+}
+
+body.ready {
+  #board {
+    opacity: 1;
+  }
+}
+
+body.won {
+  .status-loading {
+    display: none;
+  }
+  .status-won {
+    display: block;
+  }
+}
+
+body.end {
+  .status-won .btn {
+    display: none;
   }
 }
