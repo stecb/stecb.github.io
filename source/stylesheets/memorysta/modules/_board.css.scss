@@ -38,6 +38,8 @@
 }
 
 #board {
+  width: 100%;
+  overflow: hidden;
   opacity: .8;
   @include transition(opacity .5s);
   &:after {
