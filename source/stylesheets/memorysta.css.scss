@@ -78,7 +78,11 @@ header {
     top: -7px;
   }
   a {
-    color: $gray-dark;
+    color: darken($brand-warning, 20%);
+    @include transition(color .2s);
+    &:hover {
+      color: darken($brand-warning, 10%);
+    }
   }
 }
 
