@@ -24,7 +24,7 @@
   'use strict';
 
   var
-    TWITTER_SHARE_TEXT = "{{href}} I played #MemorYsta (#{{h}}) and scored {{points}} points in {{time}}!! Can you beat me?",
+    TWITTER_SHARE_TEXT = "I played #MemorYsta (#{{h}}) and scored {{points}} points in {{time}}!! Can you beat me?",
     DONE_TO = 1000, // ms
     RESET_TO = 1000, // ms
     CARD_PREFIX = 'msta-card',
@@ -68,11 +68,10 @@
 
   Game.prototype.won = function() {
     var txt = TWITTER_SHARE_TEXT
-      .replace('{{href}}', 'http://stecb.ninja/memorysta' + window.location.hash)
       .replace('{{points}}', this.points)
       .replace('{{time}}', this.DOM.time.innerHTML)
       .replace('{{h}}', this.tag.slice(0,30))
-    document.getElementById('tw-share-placeholder').innerHTML = '<a href="https://twitter.com/share" class="twitter-share-button" data-text="'+txt+'" data-via="stecb" data-count="none">Tweet</a>';
+    document.getElementById('tw-share-placeholder').innerHTML = '<a href="https://twitter.com/share" class="twitter-share-button" data-text="'+txt+'" data-url="'+'http://stecb.ninja/memorysta'+window.location.hash+'" data-count="none">Tweet</a>';
     twttr.widgets.load();
     clearInterval(this.timeouts.timer);
     this.reset();
