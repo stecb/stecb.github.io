@@ -1,0 +1,169 @@
+%header
+  %ul.pull-right
+    %li= link_to 'http://stecb.ninja', 'http://stecb.ninja'
+    %li= link_to 'stefano.ceschib@gmail.com', 'mailto:stefano.ceschib@gmail.com'
+    %li= link_to '@stecb', 'https://twitter.com/@stecb'
+    %li (+39)3490552269
+    %li.divider Via Don Luigi Rimano 49/a - 35010, Limena(PD), Italy
+  .main-info.pull-right
+    = image_tag 'me_rounded.png', width: '100', height: '100', class: 'pull-left'
+    %h2 Stefano Ceschi Berrini
+    %h3= link_to '<i class="fa fa-github"></i> https://github.com/stecb', 'https://github.com/stecb'
+%br
+%section
+  %p.main.small
+    I've been coding for almost 8 years and I love building fast, performant, rock solid web interfaces/applications for the desktop and mobile. I like challenges and I'm eager to learn new things and to improve every day.
+%section.experience
+  %h4 Experience
+  - # TRK
+  .experience-item
+    .experience-title 
+      .pull-right.small
+        <i class="fa fa-calendar"></i> March 2012 - Present <i class="fa fa-location-arrow"></i> Padua, Italy - Lugano, Switzerland
+      = link_to 'https://timerepublik.com' do
+        %b Timerepublik SA.
+    .experience-subtitle 
+      %i Software Engineer
+    %ul
+      %li Built an extremely fast and performant gelocation search engine on top of Sphinx and Google Maps with Ruby and JavaScript. Search pages load time is now 70% faster. Coded both backend and frontend
+      %li Developed a JavaScript/CSS framework aimed to simplify the frontend architecture. Used intensively caching, debounce/throttle and other techniques plus css animations to make an awesome user experience
+      %li Improved the invitations system and designed user activities newsfeed. Registered users per day increased fivefold
+      %li Currently coding a new challenging realtime chat/notifications system using faye
+      %li Developed an experimental admin analytics feature with React
+      %li Designed and coded, using a mobile-first and responsive approach, the new timerepublik user interface that works on any kind of device
+
+
+  - # Hermes
+  .experience-item
+    .experience-title
+      .pull-right.small
+        <i class="fa fa-calendar"></i> December 2014 <i class="fa fa-location-arrow"></i> Rome, Italy
+      = link_to 'https://ifad.org' do
+        %b IFAD (International Fund for Agricultural Development)
+    .experience-subtitle 
+      %i Software Engineer
+    %ul
+      %li Built an open source Ruby On Rails application that allows site owners to insert help elements in their site: tooltips, banners, tutorials
+      %li Coded a modular JavaScript application that can be dinamically embedded inside any website and it communicates with the aforementioned application through jSonp and postMessage
+    
+  - # Fitmo
+  .experience-item
+    .experience-title 
+      .pull-right.small
+        <i class="fa fa-calendar"></i> Feb 2011 - Mar 2012 <i class="fa fa-location-arrow"></i> Amsterdam, The Netherlands
+      = link_to 'https://fitmo.com' do
+        %b Fitmo BV
+    .experience-subtitle 
+      %i Front-end Software Engineer
+    %ul
+      %li Built an MVC JavaScript framework on top of Mustache and MooTools
+      %li Improved the existing front-end codebase, switched to HAML/SASS/COMPASS, and created a build/cache system that decreased by 50% load time and eliminated the time to download html mustache templates once cached
+      %li Coded an &lt;svg&gt; based interactive timeline where users could schedule their fitness activities
+
+  - # Zucchetti
+  .experience-item
+    .experience-title 
+      .pull-right.small
+        <i class="fa fa-calendar"></i> Jan 2008 - Feb 2011 <i class="fa fa-location-arrow"></i> Padua, Italy
+      = link_to 'http://zucchetti.it' do
+        %b Zucchetti SPA
+    .experience-subtitle 
+      %i Web developer/Researcher
+    %ul
+      %li Built a light and cross-browser CMS (using Java, jsp, taglib, JavaScript, AJAX, HTML) including some correlated tools to improve User-friendlines
+      %li Invented an algorithm that in O(N) time (before it was O(N^2)) transforms absolute positioned elements (inside zucchetti's proprietary editor) into inline floating elements so the container of those elements grows properly 
+      %li Worked on a &lt;canvas&gt; based Web-RAD tool that helped clients to draw/manage Business Process Management steps
+      %li Rewrote part of the existing JavaScript core codebase (~50.000 LOC) using MooTools. This improved a lot the life of the other developers
+      %li Coded with C++ and CPL(a proprietary 'python like' language) part of the user interface of a windows desktop app aimed to generate web applications
+      %li Interviewed candidates and proposed projects to the University of Padua for the Software engineering course
+
+  - # Myself
+  .experience-item
+    .experience-title 
+      .pull-right.small
+        <i class="fa fa-calendar"></i> Jan 2004 - Feb 2011 <i class="fa fa-location-arrow"></i> Padua, Italy
+      %b Self employed
+    .experience-subtitle 
+      %i Web developer/SEO specialist
+    %ul
+      %li Built my own CMS framework (PHP, ZEND, MySql, HTML, JavaScript (MooTools)) thought to easily generate/customize websites for clients.
+      %li Designed and coded several websites/ecommerce. Payed a lot of attention to web standards and browser compatibility
+
+  - # Bocconi
+  .experience-item
+    .experience-title 
+      .pull-right.small
+        <i class="fa fa-calendar"></i> Jan 2009 - Dec 2009 <i class="fa fa-location-arrow"></i> Milan, Italy
+      = link_to 'http://www.unibocconi.eu/' do
+        %b Bocconi University - School of echonomics
+    .experience-subtitle 
+      %i Web developer/Consultant
+    %ul
+      %li Built a LAMP application used by professors to collect/create/edit/view abstracts, papers and documents. Coded backend and frontend
+      %li Designed a performant architecture with mysql thought to store and search large documents (using BLOB type). In this way everything was available from inside the database and there was just one way to access the documents.
+
+  - # Unipd
+  %br
+  %br
+  .experience-item
+    .experience-title 
+      .pull-right.small
+        <i class="fa fa-calendar"></i> Jan 2007 - May 2008 <i class="fa fa-location-arrow"></i> Padua, Italy
+      = link_to 'http://www.unipd.it/' do
+        %b University of Padua - Department of Mathematics
+    .experience-subtitle 
+      %i Web developer/Consultant
+    %ul
+      %li Built a LAMP-based web portal thought to help students of computer science faculty to manage their internship and graduation processes. This portal is still in use and it's very simple to use. Coded backend and frontend
+      %li Payed great attention to accessibility. People with disabilities can easily access and use this website.
+
+  - # ENAIP
+  .experience-item
+    .experience-title 
+      .pull-right.small
+        <i class="fa fa-calendar"></i> May 2007 - Jun 2008 <i class="fa fa-location-arrow"></i> Padua, Italy
+      = link_to 'http://www.enaip.veneto.it/' do
+        %b Enaip Veneto High School
+    .experience-subtitle 
+      %i Computer science [basics] teacher
+    %ul
+      %li Taught computer science basics (computer hardware basics, binary system, computer architecture, Windows xp OS, Linux OS, Internet architecture)
+
+
+%section
+  %h4 Education
+  .experience-item
+    .experience-title 
+      .pull-right.small
+        <i class="fa fa-calendar"></i> Sep 2004 - Jul 2007 <i class="fa fa-location-arrow"></i> Padua, Italy
+      = link_to 'http://www.unipd.it/' do
+        %b University of Padua
+    .experience-subtitle 
+      %i BSc Computer Science
+    %ul
+      %li Studied Software Engineering, Algorithms, Artificial Intelligence, Web Development, OOP, Distributed programming, Computer Architecture, Computer Security
+
+
+%section
+  %h4 Computer skills
+  %ul
+    %li Proficient in: JavaScript*, Ruby, Ruby on Rails, CSS/SASS, HTML/HAML, Compass, Git
+    %li Working knowledge of: C, C++, Java, Jsp, PHP, Zend, SQL, Apache, Adobe Photoshop, Adobe Fireworks
+    %li Studied: Python, XML, Oracle, Lisp, ML, Erlang, Clojure
+    %li I code with my MacBook Pro Retina on OSX using mainly Sublime Text and the Terminal
+  .small * I've been working professionally with JavaScript for almost 8 years. I coded with: Plain JS (most of the time), Node, React.js, Ember, Angular, MooTools, jQuery, dojo, CoffeeScript, Node, Express, Sails.js, Backbone.js, Lodash, Jasmine, Mustache
+
+%section
+  %h4 Languages
+  %ul
+    %li I speak fluent Italian (Mother Language) and English. I can also speak some Spanish and I have some basics of French and Dutch.
+
+%section
+  %h4 Extra
+  %ul
+    %li Open Source contributor: <a href="https://github.com/stecb">https://github.com/stecb</a> (some of my opensource projects: <a href="https://github.com/ifad/hermes/">hermes</a>, <a href="https://github.com/stecb/pagetour">pagetour</a>, <a href="https://github.com/stecb/stecb.github.io/tree/source/source/javascripts/memorysta">memorysta</a>) and <a href="http://mootools.net/forge/profile/stecb">http://mootools.net/forge/profile/stecb</a>
+    %li StackOverflow active member: <a href="http://stackoverflow.com/users/528262/stecb">http://stackoverflow.com/users/528262/stecb</a>
+    %li Rails rumble 2013 hackaton: developed 'social timeline' in 48 hours with ruby on rails. With this webapp you can schedule future social posts on facebook, twitter, g+ etc
+    %li Rails rumble 2012 hackaton: developed a real time chess application in 48 hours with ruby on rails. Coded chess rules on the frontend + real time
+    %li I gave some talks about JavaScript, CoffeeScript, Mustache and MooTools at Fronteers Jam Session (Amsterdam) and at a local programming meetup in Padua.
+
