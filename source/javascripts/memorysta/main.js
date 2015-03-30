@@ -111,4 +111,6 @@
     hashtag.focus();
   }
 
+  (function(d,l,s){s=d.createElement('script'),l=d.scripts[0];s.setAttribute('id','hermes_script_embed');s.setAttribute('data-ref','0.0.0.0:4567/memorysta');s.src='http://localhost:3001/assets/hermes.js';l.parentNode.insertBefore(s,l)}(document));
+
 })();

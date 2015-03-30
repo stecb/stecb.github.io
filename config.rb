@@ -18,6 +18,7 @@
 #
 # With alternative layout
 page "/memorysta/index.html", layout: :memorysta
+page "/cv/index.html", layout: :cv
 
 # page "/path/to/file.html", :layout => :otherlayout
 #

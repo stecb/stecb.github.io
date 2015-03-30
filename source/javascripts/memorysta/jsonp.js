@@ -20,8 +20,13 @@
  * THE SOFTWARE.
  */
 
+//
 // simple jsonp function, pass an url and callback.
 // callback will be called w/ response as parameter
+//
+// usage:
+// jsonp(url, function(response) {});
+//
 !(function(w){
   'use strict';
   w.jsonp = function(url, callback) {
