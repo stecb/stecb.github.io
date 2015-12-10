@@ -263,6 +263,9 @@
         requestTick();
       });
 
+      wScroll = $w.scrollTop();
+      requestTick();
+
       return this;
     }
     
