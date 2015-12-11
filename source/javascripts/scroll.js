@@ -264,7 +264,7 @@
       });
 
       wScroll = $w.scrollTop();
-      requestTick();
+      this.checkElementsScroll(wScroll);
 
       return this;
     }
