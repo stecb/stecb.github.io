@@ -3,36 +3,30 @@
   <meta charset="utf-8" name="description" content="Stefano Ceschi Berrini's website | Sr. Software engineer | React/Redux/JavaScript expert.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
   <style type="text/css">
-    body {
-      display: flex;
-      align-items: center;
-      padding: 20px 0;
-      background-color: #FAFAFA;
-    }
-    .img-main {
-      width: 150px;
-      height: 150px;
-      box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.2);
-      border: 2px solid #fff;
-    }
+    body,h1,h3{font-weight:100}body{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:20px 0;background:url(https://source.unsplash.com/tlbUJKfHhEw) center center no-repeat;background-size:cover;color:#fff;text-shadow:0 1px rgba(0,0,0,.4);font-size:18px}.img-main{width:150px;height:150px;box-shadow:0 0 10px -1px rgba(0,0,0,.2);border:2px solid rgba(255,255,255,.8)}canvas{position:fixed;z-index:0}.container{position:relative;z-index:1}hr{border-color:rgba(255,255,255,.3)}a{color:#f4aa8d;-webkit-transition:color .4s;transition:color .4s}a:focus,a:hover{color:rgba(244,170,141,.6);text-decoration:none}a:active{color:rgba(244,170,141,.4)}.second{animation-delay:.2s;-webkit-animation-delay:.2s}.third{animation-delay:.4s;-webkit-animation-delay:.4s}.fourth{animation-delay:.6s;-webkit-animation-delay:.6s}.fifth,.sixth{animation-delay:.8s;-webkit-animation-delay:.8s}.last{animation-delay:1s;-webkit-animation-delay:1s}
   </style>
 </head>
 <body>
+  <canvas id="canvas"></canvas>
   <div class="container text-center">
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
-        <img class="img-main img-circle" src="https://graph.facebook.com/512242393/picture?type=large" width="150" height="150">
+        <img class="second img-main img-circle animated bounceInDown" src="https://graph.facebook.com/512242393/picture?type=large" width="150" height="150">
         <br />
-        <h1>Stefano Ceschi Berrini</h1>
-        <h2>Sr. Software Engineer</h2>
-        <hr />
-        <p>Toys I'm currently working with: JavaScript (Node, React, Redux, Redux Saga, Webpack, Hapi) ... and sometimes still Ruby & the good old Ruby on Rails</p>
+        <h1 class="animated bounceIn">Stefano Ceschi Berrini</h1>
+        <h3 class="third animated bounceInDown">Sr. Software Engineer</h3>
+        <hr class="fourth animated bounceInDown" />
+        <p class="fifth animated bounceInDown">Toys I'm currently working with: JavaScript (Node, React, Redux, Redux Saga, Webpack, Hapi) ... and sometimes still Ruby & the good old Ruby on Rails</p>
         <br>
-        ---
+        <span class="last animated bounceInDown">---</span>
         <br>
-        <small>You can catch me on <a href="https://github.com/stecb">Github</a>, <a href="https://fb.com/stefanoceschiberrini">Facebook</a>, <a href="https://twitter.com/@stecb">Twitter</a>, <a href="https://www.linkedin.com/in/stefanoceschiberrini">LinkedIn</a> or if you want you can drop me <a href="http://www.google.com/recaptcha/mailhide/d?k=01bvFUEuWxmrwyND5SvUJQjw==&amp;c=Y9IN22ynrF-qTo3NBRqQ0v-PyRKoiH3jDchM1xLD8mU=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\x3d01bvFUEuWxmrwyND5SvUJQjw\x3d\x3d\x26c\x3dY9IN22ynrF-qTo3NBRqQ0v-PyRKoiH3jDchM1xLD8mU\x3d', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">an email</a></small>
+        <p class="sixth animated bounceInUp">You can catch me on <a href="https://github.com/stecb">Github</a>, <a href="https://fb.com/stefanoceschiberrini">Facebook</a>, <a href="https://twitter.com/@stecb">Twitter</a>, <a href="https://www.linkedin.com/in/stefanoceschiberrini">LinkedIn</a> or if you want you can drop me <a href="http://www.google.com/recaptcha/mailhide/d?k=01bvFUEuWxmrwyND5SvUJQjw==&amp;c=Y9IN22ynrF-qTo3NBRqQ0v-PyRKoiH3jDchM1xLD8mU=" onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k\x3d01bvFUEuWxmrwyND5SvUJQjw\x3d\x3d\x26c\x3dY9IN22ynrF-qTo3NBRqQ0v-PyRKoiH3jDchM1xLD8mU\x3d', '', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300'); return false;" title="Reveal this e-mail address">an email</a></p>
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    function render(){function e(e,t,r,n){context.beginPath(),context.arc(e,t,r,0,2*Math.PI,!1),context.fillStyle="rgba(0, 0, 0, "+(forceTransparent?"0":"0.005")+")",context.fill(),context.lineWidth=1;context.strokeStyle="rgba(244, 170, 141,"+(forceTransparent?"0":n)+")",context.opacity=1,context.stroke()}context.clearRect(0,0,context.canvas.width,context.canvas.height);{var t=canvas.width/2;canvas.height/2}frame++,frame%1==0&&(frame>5&&frame%2==0&&circleCoord[circleCoord.length-1][0]==mX&&circleCoord[circleCoord.length-1][1]==mY&&(stay++,stay>50&&(auto=!0)),auto?(stay++,stay%=400,stay%93==0&&(dir=-dir,dirY=-dirY),circleCoord.push([mX+dir*(3*Math.random()-100+stay),mY+dirY*(3*Math.random()-100+stay),frame])):circleCoord.push([mX,mY,frame])),circleCoord.length>100&&circleCoord.shift();for(var r=0,n=circleCoord.length;n>r;r++){var a=frame-circleCoord[r][2]+15,o=circleCoord[r][0],t=circleCoord[r][1];e(o,t,2*a+a/20,2.5/a)}requestAnimationFrame(render)}var canvas=document.getElementById("canvas");canvas.setAttribute("width",window.innerWidth),canvas.setAttribute("height",window.innerHeight);var context=canvas.getContext("2d"),circleCoord=[],stay=0,dir=dirY=1,auto=!1;mX=window.innerWidth/2,mY=window.innerHeight/2;var forceTransparent=!1,handle=function(e){stay=0,auto=!1,mX=e.pageX-this.offsetLeft,mY=e.pageY-this.offsetTop};document.body.addEventListener("mousemove",handle),document.body.addEventListener("touchmove",handle),document.body.addEventListener("click",function(){forceTransparent=!forceTransparent}),window.addEventListener("resize",function(){canvas.setAttribute("width",window.innerWidth),canvas.setAttribute("height",window.innerHeight)});var frame=0;render();
+    </script>
 </body>
