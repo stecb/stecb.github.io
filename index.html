@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
   <style type="text/css">
-    body{font-weight:100}h3{font-weight: 200;font-size: 26px;}h1{font-weight: normal; font-size: 32px;}body{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:20px 0;background:url(https://source.unsplash.com/tlbUJKfHhEw) center center no-repeat;background-size:cover;color:#fff;text-shadow:0 1px rgba(0,0,0,.4);font-size:18px}.img-main{width:150px;height:150px;box-shadow:0 0 10px -1px rgba(0,0,0,.2);border:2px solid rgba(255,255,255,.8)}canvas{position:fixed;z-index:0}.container{position:relative;z-index:1}hr{border-color:rgba(255,255,255,.3)}a{color:#f4aa8d;-webkit-transition:color .4s;transition:color .4s}a:focus,a:hover{color:rgba(244,170,141,.6);text-decoration:none}a:active{color:rgba(244,170,141,.4)}.second{animation-delay:.2s;-webkit-animation-delay:.2s}.third{animation-delay:.4s;-webkit-animation-delay:.4s}.fourth{animation-delay:.6s;-webkit-animation-delay:.6s}.fifth,.sixth{animation-delay:.8s;-webkit-animation-delay:.8s}.last{animation-delay:1s;-webkit-animation-delay:1s}
+    body{font-weight:100}h3{font-weight: 200;font-size: 26px;}h1{font-weight: normal; font-size: 32px;}body{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:20px 0;background:url(https://source.unsplash.com/tlbUJKfHhEw) center center no-repeat;background-size:cover;color:#fff;text-shadow:0 1px rgba(0,0,0,.4);font-size:18px}.img-main{width:150px;height:150px;box-shadow:0 0 10px -1px rgba(0,0,0,.2);border:2px solid rgba(255,255,255,.8)}canvas{position:fixed;z-index:0;top: 0; left: 0;}.container{position:relative;z-index:1}hr{border-color:rgba(255,255,255,.3)}a{color:#f4aa8d;-webkit-transition:color .4s;transition:color .4s}a:focus,a:hover{color:rgba(244,170,141,.6);text-decoration:none}a:active{color:rgba(244,170,141,.4)}.second{animation-delay:.2s;-webkit-animation-delay:.2s}.third{animation-delay:.4s;-webkit-animation-delay:.4s}.fourth{animation-delay:.6s;-webkit-animation-delay:.6s}.fifth,.sixth{animation-delay:.8s;-webkit-animation-delay:.8s}.last{animation-delay:1s;-webkit-animation-delay:1s}
   </style>
 </head>
 <body>
@@ -27,6 +27,248 @@
     </div>
   </div>
   <script type="text/javascript">
-    function render(){function e(e,t,r,n){context.beginPath(),context.arc(e,t,r,0,2*Math.PI,!1),context.fillStyle="rgba(0, 0, 0, "+(forceTransparent?"0":"0.005")+")",context.fill(),context.lineWidth=1;context.strokeStyle="rgba(244, 170, 141,"+(forceTransparent?"0":n)+")",context.opacity=1,context.stroke()}context.clearRect(0,0,context.canvas.width,context.canvas.height);{var t=canvas.width/2;canvas.height/2}frame++,frame%1==0&&(frame>5&&frame%2==0&&circleCoord[circleCoord.length-1][0]==mX&&circleCoord[circleCoord.length-1][1]==mY&&(stay++,stay>50&&(auto=!0)),auto?(stay++,stay%=400,stay%93==0&&(dir=-dir,dirY=-dirY),circleCoord.push([mX+dir*(3*Math.random()-100+stay),mY+dirY*(3*Math.random()-100+stay),frame])):circleCoord.push([mX,mY,frame])),circleCoord.length>100&&circleCoord.shift();for(var r=0,n=circleCoord.length;n>r;r++){var a=frame-circleCoord[r][2]+15,o=circleCoord[r][0],t=circleCoord[r][1];e(o,t,2*a+a/20,2.5/a)}requestAnimationFrame(render)}var canvas=document.getElementById("canvas");canvas.setAttribute("width",window.innerWidth),canvas.setAttribute("height",window.innerHeight);var context=canvas.getContext("2d"),circleCoord=[],stay=0,dir=dirY=1,auto=!1;mX=window.innerWidth/2,mY=window.innerHeight/2;var forceTransparent=!1,handle=function(e){stay=0,auto=!1,mX=e.pageX-this.offsetLeft,mY=e.pageY-this.offsetTop};document.body.addEventListener("mousemove",handle),document.body.addEventListener("touchmove",handle),document.body.addEventListener("click",function(){forceTransparent=!forceTransparent}),window.addEventListener("resize",function(){canvas.setAttribute("width",window.innerWidth),canvas.setAttribute("height",window.innerHeight)});var frame=0;render();
-    </script>
+    var PARTICLE_QUANT = ~~(innerWidth / 20);
+var BOUNCE = -1;
+var PARTICLE_COLOR = [
+  'rgba(180,108,96,0.08)',
+  'rgba(244,170,141,0.05)'];
+var ARC_RADIUS = [10, 1, 5, 20, 40];
+/**
+ * Particles lib class
+ *
+ * @class Particles
+ * @constructor
+ */
+var Particles = function($element) {
+  // if element doesnt exist in the DOM return early
+  if ($element.length === 0) { return; }
+
+      /**
+       * A reference to the containing DOM element.
+       *
+       * @default null
+       * @property {jQuery} $element
+       * @public
+       */
+      this.$element = $element;
+
+      /**
+       * Initial timestamp use to for baseline of animation loop
+       *
+       * @default null
+       * @property lastTimeStamp
+       * @type {number}
+       * @public
+       */
+      this.lastTimeStamp = null;
+
+      /**
+       * array representing particles
+       *
+       * @default empty array
+       * @property lastTimeStamp
+       * @type {array}
+       * @public
+       */
+      this.particles = [];
+
+      this.init();
+};
+
+var proto = Particles.prototype;
+
+/**
+ * Initializes the class.
+ * Runs a single setupHandlers call, followed by createChildren and layout.
+ * Exits early if it is already initialized.
+ *
+ * @method init
+ * @private
+ */
+proto.init = function() {
+  this.createChildren()
+    .layout()
+    .enable();
+};
+
+  /**
+   * Create any child objects or references to DOM elements.
+   * Should only be run on initialization of the view.
+   *
+   * @method createChildren
+   * @returns {Particles}
+   * @private
+   */
+
+  proto.setDimensions = function() {
+    this.canvas.width  = innerWidth;
+    this.canvas.height = innerHeight;
+    this.canvasWidth = innerWidth;
+    this.canvasHeight = innerHeight;
+  } 
+  proto.createChildren = function() {
+      this.canvas = this.$element;
+      this.context = this.canvas.getContext('2d');
+      window.addEventListener('resize', this.setDimensions.bind(this));
+      this.setDimensions();
+      this.lastTimeStamp = new Date().getTime();
+
+      return this;
+  };
+
+  /**
+   * handles layout of DOM elements
+   *
+   * @method layout
+   * @returns {ParticlesController}
+   * @private
+   */
+  proto.layout = function() {
+      window.requestAnimFrame = (function() {
+          return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame         ||
+          window.mozRequestAnimationFrame;
+      })();
+
+      return this;
+  };
+
+  /**
+   * Remove any child objects or references to DOM elements.
+   *
+   * @method removeChildren
+   * @returns {Particles}
+   * @public
+   */
+  proto.removeChildren = function() {
+      this.context = null;
+      this.canvasWidth = null;
+      this.canvasHeight = null;
+      this.lastTimeStamp = null;
+
+      return this;
+  };
+
+  /**
+   * Enables the component.
+   * Performs any event binding to handlers.
+   * Exits early if it is already enabled.
+   *
+   * @method enable
+   * @public
+   */
+  proto.enable = function() {
+      this.createParticleData();
+      this.renderLoop();
+  };
+
+  //////////////////////////////////////////////////////////////////////////////////
+  // HELPER METHODS
+  //////////////////////////////////////////////////////////////////////////////////
+
+  /**
+   * Creates particle data objects
+   *
+   * @method createParticleData
+   * @private
+   */
+  proto.createParticleData = function() {
+      var i = 0;
+      var l = PARTICLE_QUANT;
+
+      for(; i < l; i++) {
+          this.particles[i] = {};
+          this.setParticleData(this.particles[i]);
+      }
+  };
+
+  /**
+   * Sets the base particle data
+   *
+   * @method setParticleData
+   * @private
+   */
+  proto.setParticleData = function(particle) {
+      particle.x = Math.random() * this.canvasWidth;
+      particle.y = Math.random() * this.canvasHeight;
+      particle.vx = (Math.random()) - 0.5;
+      particle.vy = (Math.random()) - 0.5;
+      particle.radius = ARC_RADIUS[Math.floor(Math.random() * ARC_RADIUS.length)];
+      particle.color = PARTICLE_COLOR[Math.floor(Math.random() * PARTICLE_COLOR.length)];
+  };
+
+  /**
+   * Updates the particle data object
+   *
+   * @method update
+   * @private
+   */
+  proto.update = function() {
+      var i = 0;
+      var l = PARTICLE_QUANT;
+    
+      for (; i < l; i++) {
+          var particle = this.particles[i];
+
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+
+          if (particle.x > this.canvasWidth) {
+              particle.x = this.canvasWidth;
+              particle.vx *= BOUNCE;
+          } else if (particle.x < 0) {
+              particle.x = 0;
+              particle.vx *= BOUNCE;
+          }
+
+          if (particle.y > this.canvasHeight) {
+              particle.y = this.canvasHeight;
+              particle.vy *= BOUNCE;
+          } else if (particle.y < 0) {
+              particle.y = 0;
+              particle.vy *= BOUNCE;
+          }
+      }
+  };
+
+  /**
+   * Renders the particle on the canvas
+   *
+   * @method draw
+   * @private
+   */
+  proto.draw = function() {
+      var i = 0;
+
+      if (!this.context) {
+          return;
+      }
+
+      this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    
+      for(; i < PARTICLE_QUANT; i++) {
+          var particle = this.particles[i];
+          this.context.save();
+          this.context.beginPath();
+          this.context.fillStyle = particle.color;
+          this.context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          this.context.fill();
+          this.context.restore();
+      }
+  };
+
+  /**
+   * Creates the animation loop
+   *
+   * @method renderLoop
+   * @private
+   */
+  proto.renderLoop = function() {
+      requestAnimationFrame(this.renderLoop.bind(this));
+      this.update();
+      this.draw();
+  };
+
+var particles = new Particles(document.getElementById('canvas'));
+  </script>
 </body>
