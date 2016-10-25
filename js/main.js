@@ -10,8 +10,8 @@ setTimeout(function() {
   var PARTICLE_QUANT = ~~(innerWidth / 20);
   var BOUNCE = -1;
   var PARTICLE_COLOR = [
-    'rgba(180,108,96,0.08)',
-    'rgba(244,170,141,0.05)'];
+    'rgba(95,195,106,0.08)',
+    'rgba(44,236,65,0.05)'];
   var ARC_RADIUS = [10, 1, 5, 20, 40];
   /**
    * Particles lib class
