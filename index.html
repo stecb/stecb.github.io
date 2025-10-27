@@ -19,6 +19,8 @@
   <meta content='en_US' property='og:locale'>
   <style type="text/css">
     html,body{background-color: #333; height: 100%;}h3{font-weight: 200;font-size: 26px;}h1{font-weight: normal; font-size: 32px;}body{font-weight: 300;font-family: 'Oswald', serif;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:400px 0;color:rgba(255, 255, 255, .9);text-shadow:0 1px rgba(0,0,0,.25);font-size:18px}.img-main{width:150px;height:150px;box-shadow:0 0 10px -1px rgba(0,0,0,.2); object-fit: cover;}canvas{position:fixed;z-index:2;top: 0; left: 0;opacity: 0;transition: opacity 2s; transition-delay: 1s;}canvas.in{opacity: 1}.container{position:relative;z-index:3}hr{border-color:rgba(255,255,255,.3)}a{color:rgb(95,195,106);-webkit-transition:color .4s;transition:color .4s}a:focus,a:hover{color:rgba(33,193,51,.8);text-decoration:none}a:active{color:rgba(105,214,117,.4); position:relative; top: 1px; text-shadow: none;}.second{animation-delay:.2s;-webkit-animation-delay:.2s}.third{animation-delay:.4s;-webkit-animation-delay:.4s}.fourth{animation-delay:.6s;-webkit-animation-delay:.6s}.fifth,.sixth{animation-delay:.8s;-webkit-animation-delay:.8s}.last{animation-delay:1s;-webkit-animation-delay:1s;}.img-po{position: fixed; width: 100%; height: 100%;z-index:1; top: 0; left: 0;background:url(https://images.unsplash.com/photo-1615731439720-47878ecc1ac6?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3) center center no-repeat;background-size:cover;opacity:0;transition: opacity 3s;}.img-po.in{opacity:1;}.logo{opacity: .8; margin-top: 20px;}
+    .cv-btn{display:inline-block;margin-top:25px;padding:15px 35px;background:linear-gradient(135deg,rgb(95,195,106),rgba(33,193,51,.9));border:none;border-radius:50px;color:#fff;font-size:18px;font-weight:400;text-transform:uppercase;letter-spacing:1px;cursor:pointer;box-shadow:0 4px 15px rgba(95,195,106,.4);transition:all .3s ease;text-decoration:none;position:relative;overflow:hidden;}.cv-btn:before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,.3);transition:width .6s,height .6s,top .6s,left .6s;transform:translate(-50%,-50%);}.cv-btn:hover:before{width:300px;height:300px;}.cv-btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(95,195,106,.6);color:#fff;text-decoration:none;}.cv-btn:active{transform:translateY(-1px);box-shadow:0 3px 10px rgba(95,195,106,.4);}
+    .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,.9);}.modal.show{display:block;}.modal-content{position:relative;margin:2% auto;width:90%;max-width:900px;height:90vh;}.modal-close{position:absolute;top:-40px;right:0;color:#fff;font-size:35px;font-weight:300;cursor:pointer;transition:color .3s;z-index:1001;}.modal-close:hover{color:rgb(95,195,106);}.pdf-container{width:100%;height:100%;background:#fff;border-radius:8px;overflow:hidden;}
   </style>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -39,13 +41,23 @@
         <div class="logo">
           <img class="last animated rotateInUpLeft" src="img/stecb_logo.png" width="150">
         </div>
-        <h3 class="third animated bounceInDown">Engineering Manager / Product Engineering leader / Remote Working Aficionado 💻 🌎</h3>
+        <h3 class="third animated bounceInDown">Engineering Manager / Product Engineering leader <hr />15+ years Remote Working Aficionado 💻 🌎</h3>
         <hr class="fourth animated bounceInDown" />
         <p class="fifth animated bounceInDown">Toys and buzzwords I'm currently dealing with: TypeScript, Node, React, PostgreSQL, Microservices, Distributed systems, Cybersecurity, AI, ML, Blockchain, Rust. 🚀</p>
         <br>
         <span class="last animated bounceInDown">---</span>
         <br>
-        <p class="sixth animated bounceInUp">You can catch me on <a href="https://github.com/stecb">Github</a>, <a href="https://twitter.com/@mcflycb">Twitter</a>, <a href="https://www.linkedin.com/in/stefanoceschiberrini">LinkedIn</a> or if you want you can drop me <a href="mailto:&#115;&#116;&#101;&#102;&#097;&#110;&#111;&#046;&#099;&#101;&#115;&#099;&#104;&#105;&#098;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;" title="My email">an email</a></p>
+        <p class="sixth animated bounceInUp">You can catch me on <a href="https://github.com/stecb">Github</a>, <a href="https://www.linkedin.com/in/stefanoceschiberrini">LinkedIn</a>, <a href="https://twitter.com/@mcflycb">Twitter</a> or if you want you can drop me <a href="mailto:&#115;&#116;&#101;&#102;&#097;&#110;&#111;&#046;&#099;&#101;&#115;&#099;&#104;&#105;&#098;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;" title="My email">an email</a></p>
+        <button class="cv-btn sixth animated bounceInUp" onclick="openCVModal()">📄 View My CV</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="cvModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeCVModal()">&times;</span>
+      <div class="pdf-container">
+        <iframe id="pdfViewer" style="width:100%;height:100%;border:none;" sandbox="allow-same-origin allow-scripts"></iframe>
       </div>
     </div>
   </div>
